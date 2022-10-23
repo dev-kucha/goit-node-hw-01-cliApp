@@ -24,7 +24,7 @@ async function listContacts() {
 async function getContactById(contactId) {
   try {
     const contacts = await getDb();
-    contact = contacts.filter((cont) => cont.id == contactId);
+    const contact = contacts.filter((cont) => cont.id == contactId);
     return contact[0];
   } catch (error) {
     console.log(error);
@@ -54,7 +54,7 @@ async function addContact(name, email, phone) {
     const newContact = { id, name, email, phone };
     const contacts = await getDb();
     const newContacts = [newContact, ...contacts];
-    newContactsRaw = JSON.stringify(newContacts);
+    const newContactsRaw = JSON.stringify(newContacts);
     await fs.writeFile(contactPath, newContactsRaw, "utf8");
     return newContact;
   } catch (error) {
