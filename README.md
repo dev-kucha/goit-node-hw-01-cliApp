@@ -49,6 +49,8 @@
 | `--action` | `-a`  | `remove`  | choose action | **Required** | https://ibb.co/0cm2bBG       |
 | `--id`     | `-i`  | `user id` | user id       | **Required** |                              |
 
+Db itemses finally state screenshot https://ibb.co/2d5pQgK
+
 ## Documentation
 
 [Documentation](https://www.edu.goit.global/uk/learn/1805637/2439558/2439561/homework)
