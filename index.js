@@ -20,30 +20,25 @@ const {
 } = require("./contacts");
 
 // TODO: рефакторить
-function invokeAction({ action, id, name, email, phone }) {
+async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      async function list() {
-        cl = await listContacts();
-        console.table(cl);
-      }
-      list();
+      console.table(await listContacts());
       break;
 
     case "get":
-      async function get() {
-        c = await getContactById(id);
-        console.table(c);
-      }
-      get();
+      console.table(await getContactById(id));
       break;
 
     case "add":
-      addContact(name, email, phone);
+      console.table(await addContact(name, email, phone));
       break;
 
     case "remove":
-      removeContact(id);
+      const remodevContact = await removeContact(id);
+      remodevContact === null
+        ? console.log("Unknown contact")
+        : console.table(remodevContact);
       break;
 
     default:
@@ -52,8 +47,3 @@ function invokeAction({ action, id, name, email, phone }) {
 }
 
 invokeAction(argv);
-
-// listContacts();
-// getContactById("5");
-// removeContact("");
-// addContact("name4", "email4", "phone4");
