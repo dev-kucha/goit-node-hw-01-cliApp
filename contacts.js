@@ -1,26 +1,38 @@
 const fs = require("fs").promises;
 const path = require("path");
-const { nanoid } = require("nanoid");
+// const argv = require("yargs").argv;
+
+const { customAlphabet } = require("nanoid");
+const nanoid = customAlphabet("1234567890", 6);
 
 // Розкоментуйте і запиши значення
 const contactPath = path.resolve("./db/contacts.json");
-console.log("contactPath:" + contactPath);
 
 // TODO: задокументувати кожну функцію
 async function listContacts() {
-  const contactsRaw = await fs.readFile(contactPath);
-  const contacts = JSON.parse(contactsRaw);
-  console.table(contacts);
-  return contacts;
+  try {
+    const contactsRaw = await fs.readFile(contactPath);
+    const contacts = JSON.parse(contactsRaw);
+    //   console.table(contacts);
+    return contacts;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 }
 
 async function getContactById(contactId) {
-  const contactsRaw = await fs.readFile(contactPath);
-  const contacts = JSON.parse(contactsRaw);
-  console.table(contacts);
-  contact = contacts.filter((cont) => cont.id == contactId);
-  console.log(contact[0]);
-  return contact[0];
+  try {
+    const contactsRaw = await fs.readFile(contactPath);
+    const contacts = JSON.parse(contactsRaw);
+    // console.table(contacts);
+    contact = contacts.filter((cont) => cont.id == contactId);
+    // console.log(contact[0]);
+    return contact[0];
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 }
 
 async function removeContact(contactId) {
